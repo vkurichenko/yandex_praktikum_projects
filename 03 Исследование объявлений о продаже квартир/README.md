@@ -6,7 +6,7 @@
 
 ### Используемые инструменты
 
-`Pandas` `Matplotlib`
+`Pandas`, `Matplotlib`
 
 ## Цель
 
