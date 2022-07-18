@@ -2,22 +2,14 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "# Планирование рекламных кампаний в игровой индустрии для интернет-магазина \"Стримчик\""
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Мы работаем в интернет-магазине «Стримчик», который продаёт по всему миру компьютерные игры. Из открытых источников доступны исторические данные о продажах игр, оценки пользователей и экспертов, жанры и платформы (например, Xbox или PlayStation). Перед нами данные до 2016 года. Представим, что сейчас декабрь 2016 г., и мы планируем кампанию на 2017-й. Вам нужно выявить определяющие успешность игры закономерности. Это позволит сделать ставку на потенциально популярный продукт и спланировать рекламные кампании.\n",
     "\n",
@@ -28,22 +20,14 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "## Изучение данных из файлов"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Импортируем необходимые библиотеки:"
    ]
@@ -51,11 +35,7 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
     "import pandas as pd\n",
@@ -68,11 +48,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Сохраним датасет в переменную `data`."
    ]
@@ -80,11 +56,7 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
     "data = pd.read_csv('/datasets/games.csv')"
@@ -92,11 +64,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Посмотрим первые 10 строк."
    ]
@@ -104,11 +72,7 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -326,11 +290,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Посмотрим общую информацию о данных."
    ]
@@ -338,11 +298,7 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "name": "stdout",
@@ -373,11 +329,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Видно, что в некоторых столбцах есть пропущенные значения.\n",
     "\n",
@@ -397,11 +349,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Проведем еще одно описание данных в датасете."
    ]
@@ -409,11 +357,7 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -554,22 +498,14 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Видно, что для некоторых игр количество проданных копий составляет 0. Либо данных по этим играм нет, либо эти игры совсем никому были не нужны..."
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Вывод:**\n",
     "\n",
@@ -579,33 +515,21 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "## Подготовка данных"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "### Замена названий столбцов"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Приведем названия столбцов к нижнему регистру. \n",
     "\n",
@@ -615,11 +539,7 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -838,22 +758,14 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "### Преобразование типов данных"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Посмотрим еще раз на типы данных в столбцах."
    ]
@@ -861,11 +773,7 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -895,11 +803,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Можно заменить:\n",
     "- Тип данных в столбце `year_of_release` на `int`.\n",
@@ -908,11 +812,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Заменим тип данных в столбце `year_of_release`, сначала изменив все отсутсвующие значения на 0."
    ]
@@ -920,11 +820,7 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
     "data['year_of_release'] = data['year_of_release'].fillna(0).astype('int')"
@@ -932,11 +828,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "В столбце `user_score` заменим значение `tbd` или `To Be Determined`, которое означает, что рейтинг по этим играм еще не был определен, на 0."
    ]
@@ -944,11 +836,7 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
     "data['user_score'].replace('tbd',0,inplace=True)"
@@ -956,11 +844,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Теперь можно заменить типы данных в столбцах с рейтингом."
    ]
@@ -968,11 +852,7 @@
   {
    "cell_type": "code",
    "execution_count": 11,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
     "columns_to_replace = ['critic_score', 'user_score']\n",
@@ -982,11 +862,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Проверим еще раз типы данных в столбцах."
    ]
@@ -994,11 +870,7 @@
   {
    "cell_type": "code",
    "execution_count": 12,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -1028,22 +900,14 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "### Обработка пропусков"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Сначала посчитаем количество пропусков в каждом столбце."
    ]
@@ -1051,11 +915,7 @@
   {
    "cell_type": "code",
    "execution_count": 13,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -1085,22 +945,14 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Теперь посмотрим на пропуски в столбцах, в которых они присутствуют.\n"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "#### `name` и `genre`"
    ]
@@ -1108,11 +960,7 @@
   {
    "cell_type": "code",
    "execution_count": 14,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -1202,11 +1050,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Видно, что в данном случае есть какая-то игра, для которой не известно и название, и жанр.\n",
     "Можно заменить эти значения на `unknown`."
@@ -1215,11 +1059,7 @@
   {
    "cell_type": "code",
    "execution_count": 15,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
     "data['name'].fillna('unknown',inplace=True)\n",
@@ -1228,22 +1068,14 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "#### `rating`"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Сначала посмотрим список уникальных значений столбца."
    ]
@@ -1251,11 +1083,7 @@
   {
    "cell_type": "code",
    "execution_count": 16,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -1274,11 +1102,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Согласно [Википедии](https://ru.wikipedia.org/wiki/Entertainment_Software_Rating_Board), рейтинг `K-A` или `Kids to Adults` в настоящее время был замен на `E` или `Everyone`. Также в датасете есть игры в рейтингом `E-C` или `Early Childhood`, который также можно заменить на `E`."
    ]
@@ -1286,11 +1110,7 @@
   {
    "cell_type": "code",
    "execution_count": 17,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
     "data.replace(['K-A', 'EC'], 'E', inplace=True)"
@@ -1298,11 +1118,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Теперь посмотрим на игры без рейтинга."
    ]
@@ -1310,11 +1126,7 @@
   {
    "cell_type": "code",
    "execution_count": 18,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -1564,11 +1376,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Видно, что для большого числа строк в датасете рейтинг неопределен.\n",
     "\n",
@@ -1578,11 +1386,7 @@
   {
    "cell_type": "code",
    "execution_count": 19,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -1832,11 +1636,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Видно, что таких строк в датасете все еще много.\n",
     "\n",
@@ -1846,11 +1646,7 @@
   {
    "cell_type": "code",
    "execution_count": 20,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
     "data['rating'].fillna('unknown',inplace=True)"
@@ -1858,11 +1654,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Вывод:**\n",
     "\n",
@@ -1875,33 +1667,21 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "## Исследовательский анализ данных"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "### Количество выпускаемых игр"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Посмотрим, сколько выпускалось игр в разные года."
    ]
@@ -1909,11 +1689,7 @@
   {
    "cell_type": "code",
    "execution_count": 21,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -1952,11 +1728,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Вывод:**\n",
     "\n",
@@ -1965,22 +1737,14 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "### Продажи по платформам"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Посмотрим список уникальных платформ."
    ]
@@ -1988,11 +1752,7 @@
   {
    "cell_type": "code",
    "execution_count": 22,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -2014,11 +1774,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Посчитаем суммарные продажи для каждой платформы.\n",
     "\n",
@@ -2028,11 +1784,7 @@
   {
    "cell_type": "code",
    "execution_count": 23,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
     "data['sales'] = data['na_sales']+data['eu_sales']+data['jp_sales']+data['other_sales']"
@@ -2041,11 +1793,7 @@
   {
    "cell_type": "code",
    "execution_count": 24,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -2256,11 +2004,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Сохраним первые 6 строк предыдущей таблицы в отдельную переменную."
    ]
@@ -2268,11 +2012,7 @@
   {
    "cell_type": "code",
    "execution_count": 25,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
     "top6 = (data.\n",
@@ -2285,11 +2025,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Создадим функцию для построения графика."
    ]
@@ -2297,11 +2033,7 @@
   {
    "cell_type": "code",
    "execution_count": 56,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
     "def platform_plot(x):\n",
@@ -2318,22 +2050,14 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Посмотрим распределение по годам для платформ с самыми большими продажами."
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "#### PS2"
    ]
@@ -2341,11 +2065,7 @@
   {
    "cell_type": "code",
    "execution_count": 58,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -2366,11 +2086,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "#### X360"
    ]
@@ -2378,11 +2094,7 @@
   {
    "cell_type": "code",
    "execution_count": 59,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -2403,11 +2115,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "#### PS3"
    ]
@@ -2415,11 +2123,7 @@
   {
    "cell_type": "code",
    "execution_count": 60,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -2440,11 +2144,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "#### Wii"
    ]
@@ -2452,11 +2152,7 @@
   {
    "cell_type": "code",
    "execution_count": 63,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -2477,11 +2173,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "#### DS"
    ]
@@ -2489,11 +2181,7 @@
   {
    "cell_type": "code",
    "execution_count": 64,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -2514,11 +2202,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "#### PS"
    ]
@@ -2526,11 +2210,7 @@
   {
    "cell_type": "code",
    "execution_count": 65,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -2551,11 +2231,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Вывод:**\n",
     "\n",
@@ -2564,22 +2240,14 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "### Продажи по платформам в актуальном периоде"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Наша задача - работа с актуальными платформами. \n",
     "\n",
@@ -2591,11 +2259,7 @@
   {
    "cell_type": "code",
    "execution_count": 30,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -2708,11 +2372,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Построим график с общими продажами на каждых платформах в 2013-2016 годах."
    ]
@@ -2720,11 +2380,7 @@
   {
    "cell_type": "code",
    "execution_count": 31,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -2767,11 +2423,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "На графике видно, что:\n",
     "- Продажи игр на PS3 и X360 начали сильно падать после появления их преемников в 2013 году.\n",
@@ -2781,11 +2433,7 @@
   {
    "cell_type": "code",
    "execution_count": 61,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -2888,22 +2536,14 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "#### Ящик с усами для потенциально прибыльных платформ"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Построим \"ящик с усами\" для платформ PS4, XOne, 3DS и PC.\n",
     "\n",
@@ -2913,11 +2553,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
     "top4 = ['PS4', 'XOne', '3DS', 'PC']"
@@ -2925,11 +2561,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Сохраним продажи каждой платформы в отдельный файл."
    ]
@@ -2937,11 +2569,7 @@
   {
    "cell_type": "code",
    "execution_count": 73,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
     "ps4_sales = data.query('platform == \"PS4\" & year_of_release > 0')['sales']\n",
@@ -2952,11 +2580,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Построим график \"ящик с усами\" (сначала не учитывая выбросы)."
    ]
@@ -2964,11 +2588,7 @@
   {
    "cell_type": "code",
    "execution_count": 94,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "name": "stderr",
@@ -3002,11 +2622,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Теперь еще раз построим этот график, но уже учитывая выбросы."
    ]
@@ -3014,11 +2630,7 @@
   {
    "cell_type": "code",
    "execution_count": 96,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "name": "stderr",
@@ -3052,11 +2664,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Вывод:**\n",
     "\n",
@@ -3068,33 +2676,21 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "### Влияние оценок на продажи"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "#### PS4"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Оценки критиков:**\n",
     "\n",
@@ -3104,11 +2700,7 @@
   {
    "cell_type": "code",
    "execution_count": 33,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -3150,11 +2742,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Видно, что в среднем при увеличении оценок критиков растут и продажи. \n",
     "\n",
@@ -3164,11 +2752,7 @@
   {
    "cell_type": "code",
    "execution_count": 34,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -3195,22 +2779,14 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Коэффицент корреляции составляет 0.513. Согласно [интернет-источникам](http://www.mathprofi.ru/linejnyj_koefficient_korrelyacii.html), это говорит о заметной корреляции."
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Оценки пользователей:**\n",
     "\n",
@@ -3220,11 +2796,7 @@
   {
    "cell_type": "code",
    "execution_count": 35,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -3266,11 +2838,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Видно, что в данном случае не наблюдается похожей картины, как с оценками критиков.\n",
     "\n",
@@ -3280,11 +2848,7 @@
   {
    "cell_type": "code",
    "execution_count": 36,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -3311,33 +2875,21 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Коэффицент корреляции составляет 0.186, что [говорит](http://www.mathprofi.ru/linejnyj_koefficient_korrelyacii.html) о слабой корреляции."
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "#### XOne"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Оценки критиков:**\n",
     "\n",
@@ -3347,11 +2899,7 @@
   {
    "cell_type": "code",
    "execution_count": 37,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -3393,11 +2941,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Видно, что в среднем при увеличении оценок критиков продажи также растут. \n",
     "\n",
@@ -3407,11 +2951,7 @@
   {
    "cell_type": "code",
    "execution_count": 38,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -3438,22 +2978,14 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Коэффицент корреляции составляет 0.558. Это [говорит](http://www.mathprofi.ru/linejnyj_koefficient_korrelyacii.html) о заметной корреляции."
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Оценки пользователей:**\n",
     "\n",
@@ -3463,11 +2995,7 @@
   {
    "cell_type": "code",
    "execution_count": 39,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -3509,11 +3037,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Видно, что в данном случае также не наблюдается похожей картины, как с оценками критиков.\n",
     "\n",
@@ -3523,11 +3047,7 @@
   {
    "cell_type": "code",
    "execution_count": 40,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -3554,22 +3074,14 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Коэффицент корреляции составляет 0.008, что [говорит](http://www.mathprofi.ru/linejnyj_koefficient_korrelyacii.html) о еще более слабой корреляции."
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Вывод:**\n",
     "\n",
@@ -3580,22 +3092,14 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "### Продажи по жанрам"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Создадим сводную таблицу с продажами по жанрам и построим график."
    ]
@@ -3603,11 +3107,7 @@
   {
    "cell_type": "code",
    "execution_count": 105,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -3651,11 +3151,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Построим так же график по средним продажам игр на данных платформах."
    ]
@@ -3663,11 +3159,7 @@
   {
    "cell_type": "code",
    "execution_count": 104,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -3711,11 +3203,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Построим график по медианным продажам."
    ]
@@ -3723,11 +3211,7 @@
   {
    "cell_type": "code",
    "execution_count": 106,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -3771,11 +3255,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Вывод:**\n",
     "- Больше всего продаж дают жанры Action, Shooter, Sports и Role-Playing.\n",
@@ -3785,44 +3265,28 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "### Портреты пользователей каждого региона в актуальном периоде"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "#### North America"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Для того, чтобы определить самые популярные платформы, жанры и рейтинги игр у пользователей каждого региона, создадим соответствующие сводные таблицы."
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Самые популярные платформы:**"
    ]
@@ -3830,11 +3294,7 @@
   {
    "cell_type": "code",
    "execution_count": 42,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -3918,11 +3378,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Самые популярные жанры:**"
    ]
@@ -3930,11 +3386,7 @@
   {
    "cell_type": "code",
    "execution_count": 43,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -4018,11 +3470,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Продажи и рейтинг ESRB:**"
    ]
@@ -4030,11 +3478,7 @@
   {
    "cell_type": "code",
    "execution_count": 44,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -4118,11 +3562,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Вывод:**\n",
     "\n",
@@ -4134,33 +3574,21 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "#### Europe"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Повторим предыдущие вычисления для данного региона."
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Самые популярные платформы:**"
    ]
@@ -4168,11 +3596,7 @@
   {
    "cell_type": "code",
    "execution_count": 45,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -4256,11 +3680,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Самые популярные жанры:**"
    ]
@@ -4268,11 +3688,7 @@
   {
    "cell_type": "code",
    "execution_count": 46,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -4356,11 +3772,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Продажи и рейтинг ESRB:**"
    ]
@@ -4368,11 +3780,7 @@
   {
    "cell_type": "code",
    "execution_count": 47,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -4456,11 +3864,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Вывод:**\n",
     "\n",
@@ -4472,33 +3876,21 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "#### Japan"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Повторим вычисления для данного региона."
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Самые популярные платформы:**"
    ]
@@ -4506,11 +3898,7 @@
   {
    "cell_type": "code",
    "execution_count": 48,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -4594,11 +3982,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Самые популярные жанры:**"
    ]
@@ -4606,11 +3990,7 @@
   {
    "cell_type": "code",
    "execution_count": 49,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -4694,11 +4074,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Продажи и рейтинг ESRB:**"
    ]
@@ -4706,11 +4082,7 @@
   {
    "cell_type": "code",
    "execution_count": 50,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -4794,11 +4166,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Вывод:**\n",
     "\n",
@@ -4810,33 +4178,21 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "## Проверка гипотиз"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "### Равенство пользовательских рейтингов платформ XOne и PC"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Проверим гипотезу о том, что средние пользовательские рейтинги платформ Xbox One и PC одинаковые.\n",
     "\n",
@@ -4848,11 +4204,7 @@
   {
    "cell_type": "code",
    "execution_count": 107,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -4888,11 +4240,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Гистограмма оценок для PC:**"
    ]
@@ -4900,11 +4248,7 @@
   {
    "cell_type": "code",
    "execution_count": 110,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -4940,11 +4284,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "На первый взгляд, среднее не должно сильно различаться.\n",
     "\n",
@@ -4957,11 +4297,7 @@
   {
    "cell_type": "code",
    "execution_count": 111,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
     "alpha = 0.05\n",
@@ -4972,11 +4308,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Сравним полученное значение p-value с alpha."
    ]
@@ -4984,11 +4316,7 @@
   {
    "cell_type": "code",
    "execution_count": 112,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "name": "stdout",
@@ -5007,11 +4335,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Вывод:**\n",
     "\n",
@@ -5020,22 +4344,14 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "### Равенство пользовательских рейтингов жанров Action и Sports"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Проверим гипотезу о том, что средние пользовательские рейтинги жанров Action и Sports разные.\n",
     "\n",
@@ -5047,11 +4363,7 @@
   {
    "cell_type": "code",
    "execution_count": 114,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -5087,11 +4399,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Гистограмма оценок для жанра Sports:**"
    ]
@@ -5099,11 +4407,7 @@
   {
    "cell_type": "code",
    "execution_count": 115,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -5139,11 +4443,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "На первый взгляд, среднее должно различаться.\n",
     "\n",
@@ -5156,11 +4456,7 @@
   {
    "cell_type": "code",
    "execution_count": 116,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
     "alpha = 0.05\n",
@@ -5171,11 +4467,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Сравним полученное значение p-value с alpha."
    ]
@@ -5183,11 +4475,7 @@
   {
    "cell_type": "code",
    "execution_count": 117,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "name": "stdout",
@@ -5206,11 +4494,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "**Вывод:**\n",
     "\n",
@@ -5219,22 +4503,14 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "## Общий вывод"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "В данном проекте были проанализированы данные о том, как абоненты различных тарифов используют включенные в тариф услуги.\n",
     "\n",
